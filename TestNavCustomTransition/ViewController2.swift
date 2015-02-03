@@ -16,6 +16,10 @@ class ViewController2: UIViewController {
         // Do any additional setup after loading the view.
     }
     
+    func click() {
+        self.dismissViewControllerAnimated(true, completion: nil)
+    }
+    
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
@@ -24,6 +28,17 @@ class ViewController2: UIViewController {
         UIView.animateWithDuration(1.0, animations: { () -> Void in
             self.view.backgroundColor = UIColor.purpleColor()
         })
+    }
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        if self.navigationController == nil {
+            let button = UIButton(frame: CGRectMake(30, 100, 100, 30))
+            button.setTitle("button", forState: UIControlState.Normal)
+            button.addTarget(self, action: "click", forControlEvents: UIControlEvents.TouchUpInside)
+            self.view.addSubview(button)
+        }
     }
 
     override func didReceiveMemoryWarning() {

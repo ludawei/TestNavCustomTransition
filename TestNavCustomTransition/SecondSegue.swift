@@ -31,8 +31,16 @@ class SecondSegue: UIStoryboardSegue {
                     }, completion: { (Finished) -> Void in
                         
                         firstVCView.transform = CGAffineTransformIdentity
-//                        self.sourceViewController.presentViewController(self.destinationViewController as UIViewController, animated: false, completion: nil)
-                        (self.sourceViewController as UIViewController).navigationController?.pushViewController(self.destinationViewController as UIViewController, animated: false)
+
+                        if self.sourceViewController.isKindOfClass(UINavigationController.self)
+                        {
+                            self.sourceViewController.pushViewController(self.destinationViewController as UIViewController, animated: false)
+                        }
+                        else
+                        {
+                            self.sourceViewController.presentViewController(self.destinationViewController as UIViewController, animated: false, completion: nil)
+                        }
+                        
                 })
         }
     }
